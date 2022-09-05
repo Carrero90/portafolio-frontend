@@ -28,14 +28,15 @@ import { LoginService } from 'src/app/services/login.service';
   ],
 })
 export class EducationComponent implements OnInit, OnDestroy {
-  isOpen: boolean = false;
-  public education: Education[];
+  isOpen: boolean;
+  education: Education[];
   isAuthenticated : boolean;
   private userSub: Subscription;
   constructor(private educationService: EducationService, private loginService: LoginService) {
     this.education = [];
     this.isAuthenticated = false;
     this.userSub = new Subscription;
+    this.isOpen = false;
   }
 
   ngOnInit(): void {
