@@ -57,6 +57,12 @@ button span:hover{
 
 }
 
+a h1:visited{
+    text-decoration: none;
+    color: transparent;
+    
+}
+
 /*media query*/
 @media (min-width:  568px) {
     button{
