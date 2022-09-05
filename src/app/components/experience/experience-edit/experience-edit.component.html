@@ -1,0 +1,69 @@
+<div class="informacion">
+
+    <form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()" class="form">
+        <div formGroupName="experience" class="formulario">
+            
+            <!-- nombre de la empresa -->
+            <label for="nombreEmpresa">Nombre de la empresa</label>
+            <input formControlName="nombreEmpresa" type="text" placeholder="nombre de la Empresa" id="nombreEmpresa"
+                name="nombreEmpresa">
+            <div *ngIf="!nombreEmpresa?.valid && (nombreEmpresa?.dirty || nombreEmpresa?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="nombreEmpresa?.errors?.['required'] || nombreEmpresa?.errors?.['notEspacios']">
+                    <p>El nombre de la empresa es obligatorio</p>
+                </div>
+                <div *ngIf="nombreEmpresa?.errors?.['minlength']">
+                    <p>El Nombre de la empresa debe tener al menos dos caracteres</p>
+                </div>
+            </div>
+
+            <!-- fecha de inicio -->
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input formControlName="fechaInicio" type="text" placeholder="fecha de inicio" required id="fechaInicio"
+                name="fechaInicio">
+            <div *ngIf="!fechaInicio?.valid && (fechaInicio?.dirty || fechaInicio?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="fechaInicio?.errors?.['required'] || fechaInicio?.errors?.['notEspacios']">
+                    <p>La fecha de inicio es obligatorio</p>
+                </div>
+                <div *ngIf="fechaInicio?.errors?.['minlength']">
+                    <p>La fecha de inicio debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+
+
+            <!-- fecha Fin-->
+            <label for="fechaFin">Fecha fin</label>
+            <input formControlName="fechaFin" type="text" placeholder="Fecha fin" required id="fechaFin"
+                name="fechaFin">
+            <div *ngIf="!fechaFin?.valid && (fechaFin?.dirty || fechaFin?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="fechaFin?.errors?.['required'] || fechaFin?.errors?.['notEspacios']">
+                    <p>La fecha fin es obligatorio</p>
+                </div>
+                <div *ngIf="fechaFin?.errors?.['minlength']">
+                    <p>La fecha fin debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+
+
+
+            <!-- descripcion laboral -->
+            <label for="descLaboral">Descripcion Laboral</label>
+            <textarea formControlName="descLaboral" placeholder="Descripcion Laboral" required id="descLaboral"
+                name="descripcion"></textarea>
+            <div *ngIf="!descLaboral?.valid && (descLaboral?.dirty || descLaboral?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="descLaboral?.errors?.['required'] || descLaboral?.errors?.['notEspacios']">
+                    <p>La descripción laboral es obligatorio</p>
+                </div>
+                <div *ngIf="descLaboral?.errors?.['minlength']">
+                    <p>La descrpción laboral debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- boton de enviar -->
+        <button type="submit" id="submit">Guardar</button>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div class="crear" *ngIf="isAuthenticated">
+  <a [routerLink]="['/crear-education']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+</div>
+<div class="container">
+  <div *ngFor="let educa of education">
+    <div class="edit"  *ngIf="isAuthenticated">
+      <a [routerLink]="['/edit-education', educa.id]"><i class="bi bi-pencil"></i></a>
+      <a (click)="deletEducation(educa.id)"><i class="bi bi-x-circle"></i></a>
+    </div>
+    <button class="accordion" type="button" (click)="toggleOpen()">{{educa.nombreUniversidad}}</button>
+    <div class="panel" [@panel]="isOpen ? 'open' : 'closed'">
+      <div class="fecha">
+        <p>Año de ingreso:{{educa.yearIngreso}} </p>
+        <p>Año de egreso:{{educa.yearEgreso}}</p>
+      </div>
+
+      <p>Carrera: {{educa.carrera}}</p>
+      <p>{{educa.descripcion}}</p>
+    </div>
+  </div>
+</div>

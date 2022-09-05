@@ -1,0 +1,22 @@
+<header>
+    <div class="logos">
+        <div>
+            <img class="logo" src="../../../assets/imagenes/logos/APLogo-20-20.png" alt="logo argentina programa">
+        </div>
+        <div class="titulo">
+            <a [routerLink]="['/persona']"><h1>{{ name }}</h1></a>
+        </div>
+        <div class="prueba">
+            <div class="redes">
+                <a href="https://www.instagram.com/cristalnaranjo/" target="_blank"><img src="../../../assets/imagenes/logos/instagram.svg" alt="instagram"></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="../../../assets/imagenes/logos/facebook.svg" alt="facebook"></a>
+                <a href="https://twitter.com/" target="_blank"><img src="../../../assets/imagenes/logos/twitter.svg" alt="twitter"></a>
+            </div>
+            <div>
+                <button [routerLink]="['/login']" *ngIf="!isAuthenticated"><Span>LOGIN</Span></button>
+                <button id="botom" *ngIf="isAuthenticated" (click)="onLogout()"><Span>LOGOUT</Span></button>
+            </div>
+        </div>
+        
+    </div>
+</header>

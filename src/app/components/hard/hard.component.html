@@ -1,0 +1,18 @@
+<div class="crear" *ngIf="isAuthenticated">
+  <a [routerLink]="['/crear-hard']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+</div>
+<div class="hard">
+<div class="skill" *ngFor="let hard of hard" >
+  
+  <div class="edit" *ngIf="isAuthenticated">
+    <a [routerLink]="['/edit-hard', hard.id]"><i class="bi bi-pencil"></i></a>
+    <a (click)="deletHard(hard.id)"><i class="bi bi-x-circle"></i></a>
+    
+  </div>
+  <h2>{{hard.nombreHabi}}</h2>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0"
+      aria-valuemax="100">{{hard.porcentaje}}%</div>
+  </div>
+</div>
+</div>

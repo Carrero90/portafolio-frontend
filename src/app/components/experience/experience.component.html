@@ -1,0 +1,19 @@
+<div class="crear" *ngIf="isAuthenticated">
+    <a [routerLink]="['/crear-experience']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+</div>
+<div class="experience">
+    <div *ngFor="let exper of experiences">
+        <div class="edit2" *ngIf="isAuthenticated">
+            <a [routerLink]="['/edit-experience', exper.id]"><i class="bi bi-pencil"></i></a>
+            <a (click)="deletExperience(exper.id)"><i class="bi bi-x-circle"></i></a>
+        </div>
+
+        <div class="marco">
+
+            <p>Empresa: {{exper.nombreEmpresa}}</p>
+            <p>Desde: {{exper.fechaInicio}}</p>
+            <p>Hasta: {{exper.fechaFin}}</p>
+            <p>Decripcion: {{exper.descLaboral}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="informacion">
+
+  <form [formGroup]="projectFormGroup" (ngSubmit)="onSubmit()" class="form">
+    <div formGroupName="project" class="formulario">
+      <!-- nombre del proyecto -->
+      <label for="nombreProyec">Nombre del proyecto</label>
+      <input formControlName="nombreProyec" type="text" placeholder="nombre del proyecto" id="nombreProyec"
+        name="nombreProyec">
+      <div *ngIf="!nombreProyec?.valid && (nombreProyec?.dirty || nombreProyec?.touched)"
+        class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="nombreProyec?.errors?.['required'] || nombreProyec?.errors?.['notEspacios']">
+          <p>El nombre del proyecto es obligatorio</p>
+        </div>
+        <div *ngIf="nombreProyec?.errors?.['minlength']">
+          <p>El proyecto debe tener al menos tres caracteres</p>
+        </div>
+      </div>
+
+      <!-- descripcion del proyecto -->
+      <label for="descProyecto">Descripción del proyecto</label>
+      <textarea formControlName="descProyecto" type="text" placeholder="descripcion del proyecto" required
+        id="descProyecto" name="descProyecto"></textarea>
+      <div *ngIf="!descProyecto?.valid && (descProyecto?.dirty || descProyecto?.touched)"
+        class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="descProyecto?.errors?.['required'] || descProyecto?.errors?.['notEspacios']">
+          <p>La descripcion del proyecto es obligatorio</p>
+        </div>
+        <div *ngIf="descProyecto?.errors?.['minlength']">
+          <p>La descripcion del proyecto debe tener al menos diez caracteres</p>
+        </div>
+      </div>
+
+
+      <!-- direccion de la pagina-->
+      <label for="urlPagina">Direccion de la pagina</label>
+      <input formControlName="urlPagina" type="text" placeholder="direccion de la pagina" required id="urlPagina"
+        name="urlPagina">
+      <div *ngIf="!urlPagina?.valid && (urlPagina?.dirty || urlPagina?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="urlPagina?.errors?.['required'] || urlPagina?.errors?.['notEspacios']">
+          <p>La direccion de la pagina es obligatorio</p>
+        </div>
+        <div *ngIf="urlPagina?.errors?.['minlength']">
+          <p>La direccion de la pagina debe tener al menos diez caracteres</p>
+        </div>
+      </div>
+
+
+
+      <!-- imagen -->
+      <!-- <label for="urlFoto">Subir imagen</label>
+        <input formControlName="urlFoto" type="file" name="image" placeholder="Subir imagen" class="subir">
+        <div *ngIf="!urlFoto?.valid && (sobreMi?.dirty || sobreMi?.touched)" class="alert alert-danger mt-1 mr-3">
+          <div *ngIf="urlFoto?.errors?.['required']">
+            <p>La imagen es obligatorio</p>
+          </div>
+        </div> -->
+    </div>
+
+    <!-- boton de enviar -->
+    <button type="submit" id="submit">Guardar</button>
+  </form>
+</div>

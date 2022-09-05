@@ -1,0 +1,69 @@
+<div class="informacion">
+  
+  <form [formGroup]="aboutFormGroup" (ngSubmit)="onSubmit()" class="form">
+    <div formGroupName="about" class="formulario">
+      <!-- nombre -->
+      <label for="name">Nombre</label>
+      <input formControlName="nombre" type="text" placeholder="nombre" id="nombre" name="nombre">
+      <div *ngIf="!nombre?.valid && (nombre?.dirty || nombre?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="nombre?.errors?.['required'] || nombre?.errors?.['notEspacios']">
+          <p>El nombre es obligatorio</p>
+        </div>
+        <div *ngIf="nombre?.errors?.['minlength']">
+          <p>El Nombre debe tener al menos tres caracteres</p>
+        </div>
+      </div>
+
+      <!-- apellido -->
+      <label for="apellido">Apellido</label>
+      <input formControlName="apellido" type="text" placeholder="apellido" required id="apellido" name="apellido">
+      <div *ngIf="!apellido?.valid && (apellido?.dirty || apellido?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="apellido?.errors?.['required'] || apellido?.errors?.['notEspacios']">
+          <p>El apellido es obligatorio</p>
+        </div>
+        <div *ngIf="apellido?.errors?.['minlength']">
+          <p>El apellido debe tener al menos dos caracteres</p>
+        </div>
+      </div>
+
+
+      <!-- ocupacion -->
+      <label for="ocupacion">Ocupación</label>
+      <input formControlName="ocupacion" type="text" placeholder="ocupacion" required id="ocupacion" name="ocupacion">
+      <div *ngIf="!ocupacion?.valid && (ocupacion?.dirty || ocupacion?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="ocupacion?.errors?.['required'] || ocupacion?.errors?.['notEspacios']">
+          <p>La ocupacion es obligatorio</p>
+        </div>
+        <div *ngIf="ocupacion?.errors?.['minlength']" >
+          <p>La ocupación debe tener al menos dos caracteres</p> 
+        </div>
+      </div>
+
+
+      <!-- sobre mi -->
+      <label for="sobreMi">Sobre Mi</label>
+      <textarea formControlName="sobreMi" placeholder="descripción" required id="sobreMi" name="sobreMi"></textarea>
+      <div *ngIf="!sobreMi?.valid && (sobreMi?.dirty || sobreMi?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="sobreMi?.errors?.['required'] || sobreMi?.errors?.['notEspacios']">
+          <p>Sobre mi es obligatorio</p>
+        </div>
+        <div *ngIf="sobreMi?.errors?.['minlength']">
+          <p>Sobre mi debe tener al menos cinco caracteres</p>
+        </div>
+      </div>
+
+
+      <!-- imagen -->
+      <label for="urlFoto">Subir imagen</label>
+      <input formControlName="urlFoto" type="text" name="image" placeholder="Subir imagen" class="subir">
+      <div *ngIf="!urlFoto?.valid && (sobreMi?.dirty || sobreMi?.touched)" class="alert alert-danger mt-1 mr-3">
+        <div *ngIf="urlFoto?.errors?.['required']">
+          <p>La imagen es obligatorio</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- boton de enviar -->
+    <button type="submit" id="submit">Guardar</button>
+  </form>
+</div>

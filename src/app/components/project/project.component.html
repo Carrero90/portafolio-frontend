@@ -1,0 +1,24 @@
+<div class="crear" *ngIf="isAuthenticated">
+    <a [routerLink]="['/crear-project']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+</div>
+<div class="project">
+   
+    <div class="card" *ngFor="let proyec of proyectos">
+        <div class="edit" *ngIf="isAuthenticated">
+            <a [routerLink]="['/edit-project', proyec.id]"><i class="bi bi-pencil"></i></a>
+            <a (click)="deletProyecto(proyec.id)"><i class="bi bi-x-circle"></i></a>
+        </div>
+        <!-- <div class="img-project"><img class="left" src="{{proyec.urlImagen}}" /></div> -->
+        <div class="right">
+            <h1>{{proyec.nombreProyec}}</h1>
+            <!--colocar el nombre del proyecto-->
+            <div class="separator"></div>
+            <p class="parrafo">{{proyec.descProyecto}}</p>
+            <!--colocar la descripcion del proyecto-->
+        </div>
+
+
+        <div class="fab"><a class="info">MORE</a></div>
+        <!--colocar el boton que lleva a la pagina de github-->
+    </div>
+</div>

@@ -1,0 +1,66 @@
+/*boton*/
+button {
+    position: relative;
+    height: 40px;
+    padding: 0 30px;
+    border: 4pt solid rgba(238, 123, 172, 1);
+    background: transparent;
+    user-select: none;
+    white-space: nowrap;
+    transition: all .05s linear;
+    border-radius : 0px 7px 0px 7px;
+    width: 100px;
+    margin-top: 30px;
+}
+   
+button:before, button:after {
+    content: "";
+    position: absolute;
+    background: rgba(35, 53, 62, 1);
+    transition: all .2s linear;
+}
+   
+button:before {
+    width: calc(100% + 18px);
+    height: calc(100% - 10px);
+    top: 6px;
+    left: -9px;
+}
+   
+button:after {
+    width: calc(100% - 22px);
+    height: calc(100% + 23px);
+    top: -11px;
+    left: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+   
+button span {
+    font-size: 19px;
+    z-index: 3;
+    position: relative;
+    font-weight: 400;
+    left: -13px;
+    color: rgba(255, 255, 255, 1);
+    font-family: mifuente;
+}
+
+button span:hover{
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#botom span{
+    left: -23px;
+
+}
+
+/*media query*/
+@media (min-width:  568px) {
+    button{
+        margin-top: 0px;
+    }
+}
+

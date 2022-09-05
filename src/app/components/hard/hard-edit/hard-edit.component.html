@@ -1,0 +1,37 @@
+<div class="informacion">
+
+    <form [formGroup]="hardFormGroup" (ngSubmit)="onSubmit()" class="form">
+        <div formGroupName="hard" class="formulario">
+            <!-- nombre de universidad -->
+            <label for="nombreHabi">Nombre de la habilidad</label>
+            <input formControlName="nombreHabi" type="text" placeholder="nombre de la habilidad"
+                id="nombreHabi" name="nombreHabi">
+            <div *ngIf="!nombreHabi?.valid && (nombreHabi?.dirty || nombreHabi?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="nombreHabi?.errors?.['required'] || nombreHabi?.errors?.['notEspacios']">
+                    <p>El nombre de la habilidad es obligatorio</p>
+                </div>
+                <div *ngIf="nombreHabi?.errors?.['minlength']">
+                    <p>El Nombre de la habilidad debe tener al menos dos caracteres</p>
+                </div>
+            </div>
+
+            <!-- porcentaje -->
+            <label for="porcentaje">Porcentaje de conocimiento</label>
+            <input formControlName="porcentaje" type="number" placeholder="porcentaje" required id="porcentaje"
+                name="porcentaje">
+            <div *ngIf="!porcentaje?.valid && (porcentaje?.dirty || porcentaje?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="porcentaje?.errors?.['required']">
+                    <p>El porcentaje es obligatorio</p>
+                </div>
+                <div *ngIf="porcentaje?.errors?.['minlength']">
+                    <p>El porcentaje debe tener al menos dos caracteres</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- boton de enviar -->
+        <button type="submit" id="submit">Guardar</button>
+    </form>
+</div>

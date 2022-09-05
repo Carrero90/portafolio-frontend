@@ -1,0 +1,22 @@
+
+
+<form id="survey-form" #logintForm="ngForm" (ngSubmit)="onSubmit(logintForm)">
+    <div class="alert alert-danger" *ngIf="error">
+        <p>{{error}}</p>
+    </div>
+    <div class="nombre">
+        <label for="email" id="email-label">Email</label>
+        <input type="email"  id="email" placeholder="Ingresa Tu Email" ngModel name="email"  required email>
+    </div>
+    <div class="nombre">
+        <label for="password" id="name-label">Contraseña</label>
+        <input type="password" id="password" placeholder="Ingresa Tu Contraseña" ngModel name="password" required minlength="6" >
+    </div>
+    <div>
+        <button id="submit" type="submit" [disabled]="!logintForm.valid">{{ isLogin? 'Iniciar Sesión': 'Registrarme' }}</button>
+        <br>
+        <button  class="submit" (click)="onSwitch ()" type="button">Cambiar a {{isLogin? 'Registrarme': 'Iniciar Sesión'}}</button>
+        <!-- <input type="submit" id="submit" value="Iniciar Sesión" [disabled]="logintForm.invalid"> -->
+    </div>
+
+</form>

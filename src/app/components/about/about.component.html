@@ -1,0 +1,22 @@
+<div class="crear" *ngIf="isAuthenticated">
+    <a  [routerLink]="['/crear-about']" ><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+</div>
+<div *ngFor="let pers of personas">
+    <div class="edit" *ngIf="isAuthenticated">
+        <a  [routerLink]="['/edit-about', pers.id]"><i class="bi bi-pencil"></i></a>
+        <a  (click)="deletPersona(pers.id)"><i class="bi bi-x-circle"></i></a>
+    </div>
+
+    <div class="sobre_mi">
+
+        <div class="informacion">
+            <p class="contenido">{{ pers.nombre }} {{pers.apellido}}</p>
+            <p class="contenido">{{ pers.ocupacion }}</p>
+            <p class="contenido">{{ pers.sobreMi }}</p>
+
+        </div>
+
+        <img class="foto" src="{{pers.urlFoto}}" alt="foto de perfil">
+
+    </div>
+</div>

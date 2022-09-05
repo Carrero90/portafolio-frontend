@@ -1,0 +1,79 @@
+<div class="informacion">
+
+    <form [formGroup]="educationFormGroup" (ngSubmit)="onSubmit()" class="form">
+        <div formGroupName="education" class="formulario">
+            <!-- nombre de universidad -->
+            <label for="nombreUniversidad">Nombre de universidad</label>
+            <input formControlName="nombreUniversidad" type="text" placeholder="nombre de Universidad"
+                id="nombreUniversidad" name="nombreUniversidad">
+            <div *ngIf="!nombreUniversidad?.valid && (nombreUniversidad?.dirty || nombreUniversidad?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="nombreUniversidad?.errors?.['required'] || nombreUniversidad?.errors?.['notEspacios']">
+                    <p>El nombre de universidad es obligatorio</p>
+                </div>
+                <div *ngIf="nombreUniversidad?.errors?.['minlength']">
+                    <p>El Nombre de universidad debe tener al menos dos caracteres</p>
+                </div>
+            </div>
+
+            <!-- Año de Ingreso -->
+            <label for="yearIngreso">Año de Ingreso</label>
+            <input formControlName="yearIngreso" type="text" placeholder="Año de ingreso" required id="yearIngreso"
+                name="yearIngreso">
+            <div *ngIf="!yearIngreso?.valid && (yearIngreso?.dirty || yearIngreso?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="yearIngreso?.errors?.['required'] || yearIngreso?.errors?.['notEspacios']">
+                    <p>El año de ingreso es obligatorio</p>
+                </div>
+                <div *ngIf="yearIngreso?.errors?.['minlength']">
+                    <p>El año de ingreso debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+
+
+            <!-- Año de Egreso -->
+            <label for="yearEgreso">Año de Egreso</label>
+            <input formControlName="yearEgreso" type="text" placeholder="Año de egreso" required id="yearEgreso"
+                name="yearEgreso">
+            <div *ngIf="!yearEgreso?.valid && (yearEgreso?.dirty || yearEgreso?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="yearEgreso?.errors?.['required'] || yearEgreso?.errors?.['notEspacios']">
+                    <p>El año de egreso es obligatorio</p>
+                </div>
+                <div *ngIf="yearEgreso?.errors?.['minlength']">
+                    <p>El año de egreso debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+
+            <!-- Carrera -->
+            <label for="carrera">Carrera</label>
+            <input formControlName="carrera" type="text" placeholder="carrera" required id="carrera" name="carrera">
+            <div *ngIf="!carrera?.valid && (carrera?.dirty || carrera?.touched)" class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="carrera?.errors?.['required'] || carrera?.errors?.['notEspacios']">
+                    <p>La carrera es obligatorio</p>
+                </div>
+                <div *ngIf="carrera?.errors?.['minlength']">
+                    <p>La carrera debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+
+
+            <!-- descripcion -->
+            <label for="descripcion">Descripcion</label>
+            <textarea formControlName="descripcion" placeholder="descripcion" required id="descripcion"
+                name="descripcion"></textarea>
+            <div *ngIf="!descripcion?.valid && (descripcion?.dirty || descripcion?.touched)"
+                class="alert alert-danger mt-1 mr-3">
+                <div *ngIf="descripcion?.errors?.['required'] || descripcion?.errors?.['notEspacios']">
+                    <p>La descripción es obligatorio</p>
+                </div>
+                <div *ngIf="descripcion?.errors?.['minlength']">
+                    <p>La descrpción debe tener al menos ocho caracteres</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- boton de enviar -->
+        <button type="submit" id="submit">Guardar</button>
+    </form>
+</div>

@@ -1,0 +1,111 @@
+.menu{
+    text-align: center;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color : rgba(255, 255, 255, 0.6);
+    font-family: mifuente;
+    font-size: 20px;
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    margin: auto;
+    padding: 10px 0px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 100%;
+    /* position: fixed; */
+    margin-top: 0px;
+    
+}
+
+.carpeta {
+    background: rgba(59, 83, 96, 1);
+    width: 50px;
+    height: auto;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carpeta2 {
+    background: rgba(139, 95, 131, 1);
+    width: 50px;
+    height: auto;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.5);
+}
+  
+.carpeta3 {
+    background: rgba(214, 176, 177, 1);
+    width: 50px;
+    height: auto;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.5);
+}
+ 
+.carpeta4 {
+    background: rgba(167, 224, 198, 1);
+    width: 50px;
+    height: auto;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carpeta4 a {
+    font-size: 15px;
+}
+
+
+
+
+@media (min-width:  648px) {
+    .menu {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width:  950px) {
+    .menu{
+        text-align: center;
+        margin-top: 70px;
+    }
+
+    .carpeta {
+        width: 75px;
+        height: auto;
+    }
+    
+    .carpeta2 {
+        width: 75px;
+        height: auto;
+    }
+      
+    .carpeta3 {
+        width: 75px;
+        height: auto;
+    }
+     
+    .carpeta4 {
+        width: 75px;
+        height: auto;
+    }
+
+    a {
+        font-size: 30px;
+    }
+
+    .carpeta4 a {
+        font-size: 25px;
+    }
+}
