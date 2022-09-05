@@ -1,5 +1,5 @@
-<div class="crear" *ngIf="isAuthenticated">
-  <a [routerLink]="['/crear-education']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+<div class="crear" >
+  <a  *ngIf="isAuthenticated" [routerLink]="['/crear-education']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
 </div>
 <div class="container">
   <div *ngFor="let educa of education">

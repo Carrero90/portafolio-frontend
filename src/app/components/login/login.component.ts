@@ -40,21 +40,21 @@ export class LoginComponent implements OnInit {
     //condicion si esta en registro o en iniciar sesion
     if (this.isLogin) {
       this.loginService.loginIn(email, password).subscribe(res => {
-        console.log(res);
+        //console.log(res);
         this.router.navigate(['/persona']);
 
       }, erroMens => {
-        console.log(erroMens);
+        //console.log(erroMens);
         this.error = erroMens;
         
       });
     } else {
       //llamado de la api
       this.loginService.loginUp(email, password).subscribe(res => {
-        console.log(res);
+        //console.log(res);
 
       }, erroMens => {
-        console.log(erroMens);
+        //console.log(erroMens);
         this.error = erroMens;
       });
 

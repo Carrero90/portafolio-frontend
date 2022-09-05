@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Persona } from 'src/app/models/persona';
@@ -8,20 +9,22 @@ import { PersonaService } from 'src/app/services/persona.service';
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
- 
+  
+
 
 })
 export class AboutComponent implements OnInit, OnDestroy {
   personas: Persona[];
   isAuthenticated : boolean;
   private userSub: Subscription;
-
+  
 
   constructor(private personaService: PersonaService, private loginService: LoginService)
                {
     this.personas = [];
     this.isAuthenticated = false;
     this.userSub = new Subscription;
+ 
 
   }
 
@@ -53,7 +56,7 @@ export class AboutComponent implements OnInit, OnDestroy {
         next: response => {
           //alert('El perfil se ha eliminado con éxito');
 
-
+          
           //para recargar la pagina de persona
           window.location.reload();
         },

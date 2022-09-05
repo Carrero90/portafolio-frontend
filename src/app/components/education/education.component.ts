@@ -26,9 +26,11 @@ import { LoginService } from 'src/app/services/login.service';
       ]),
     ]),
   ],
+  
+  
 })
 export class EducationComponent implements OnInit, OnDestroy {
-  isOpen: boolean = false;
+  isOpen: boolean
   public education: Education[];
   isAuthenticated : boolean;
   private userSub: Subscription;
@@ -36,6 +38,7 @@ export class EducationComponent implements OnInit, OnDestroy {
     this.education = [];
     this.isAuthenticated = false;
     this.userSub = new Subscription;
+    this.isOpen= false;
   }
 
   ngOnInit(): void {

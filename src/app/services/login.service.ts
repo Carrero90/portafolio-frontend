@@ -86,7 +86,7 @@ export class LoginService {
 
   //cierre de sesion automatico
   autoLogOut(expirationDuration: number){
-    console.log(expirationDuration);
+    //console.log(expirationDuration);
     
     this.tokenExpirationTime = setTimeout(() => {
       this.logout();
