@@ -3,7 +3,7 @@
     <div>
         <app-menu></app-menu>
     </div>
-    <div>
+    <div [@routeAnimations]="getRouteAnimationData()">
         <router-outlet></router-outlet>
     </div>
 
