@@ -26,12 +26,12 @@ const routes: Routes = [
     {path: 'edit-hard/:id', component:  HardEditComponent, canActivate: [LoginGuard]},
     {path: 'crear-project', component:  ProjectEditComponent, canActivate: [LoginGuard]},
     {path: 'edit-project/:id', component:  ProjectEditComponent, canActivate: [LoginGuard]},
-    {path: 'persona', component: AboutComponent},
-    {path: 'experience', component: ExperienceComponent},
-    {path: 'education', component: EducationComponent},
-    {path: 'project', component: ProjectComponent},
-    {path: 'hard', component: HardComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'persona', component: AboutComponent, data: {animation: 'aboutPage'}},
+    {path: 'experience', component: ExperienceComponent, data: {animation: 'expePage'}},
+    {path: 'education', component: EducationComponent,  data: {animation: 'eduPage'}},
+    {path: 'project', component: ProjectComponent, data: {animation: 'proPage'}},
+    {path: 'hard', component: HardComponent,data: {animation: 'hardPage'}},
+    {path: 'login', component: LoginComponent, data: {animation: 'logPage'}},
     {path: '', redirectTo: '/persona', pathMatch: 'full'},
     {path: '**', redirectTo: '/persona', pathMatch: 'full'}
   ];

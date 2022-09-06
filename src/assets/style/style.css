@@ -98,6 +98,7 @@ header {
     transition: all .05s linear;
     width: 90%;
     margin: 40px 20px 20px 0px;
+    
 }
    
 .marco:before, .marco:after {
@@ -147,6 +148,8 @@ header {
     margin-left: 20px;
     z-index: 3;
 }
+
+
 
 /*education*/
 .container {
@@ -573,8 +576,8 @@ i {
   
     /*experience*/
     .experience, .container {
-        position: absolute;
-        top: 180px;
+        position: relative;
+        top: 100px;
         margin-left: 30px;
         
     }
