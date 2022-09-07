@@ -63,6 +63,15 @@ a h1:visited{
     
 }
 
+/* fondo */
+header{
+    background-color: rgba(35, 53, 62, 1);
+    width: 100%;
+    height: auto;
+    padding-right: 20px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.4);
+
+}
 /*media query*/
 @media (min-width:  568px) {
     button{
