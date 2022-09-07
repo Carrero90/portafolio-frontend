@@ -13,9 +13,9 @@
         <input type="password" id="password" placeholder="Ingresa Tu Contraseña" ngModel name="password" required minlength="6" >
     </div>
     <div>
-        <button id="submit" type="submit" [disabled]="!logintForm.valid">{{ isLogin? 'Iniciar Sesión': 'Registrarme' }}</button>
-        <br>
-        <button  class="submit" (click)="onSwitch ()" type="button">Cambiar a {{isLogin? 'Registrarme': 'Iniciar Sesión'}}</button>
+        <button id="submit" type="submit" [disabled]="!logintForm.valid">Iniciar Sesión</button>
+        <!-- <br>
+        <button  class="submit" (click)="onSwitch ()" type="button">Cambiar a {{isLogin? 'Registrarme': 'Iniciar Sesión'}}</button> -->
         <!-- <input type="submit" id="submit" value="Iniciar Sesión" [disabled]="logintForm.invalid"> -->
     </div>
 

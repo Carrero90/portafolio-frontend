@@ -67,15 +67,19 @@ a h1:visited{
 header{
     background-color: rgba(35, 53, 62, 1);
     width: 100%;
-    height: auto;
+    height: 280px;
     padding-right: 20px;
-    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 6px 6px rgba(0, 0, 0, 0.5);
 
 }
 /*media query*/
 @media (min-width:  568px) {
     button{
         margin-top: 0px;
+    }
+
+    header{
+        height: auto;
     }
 }
 

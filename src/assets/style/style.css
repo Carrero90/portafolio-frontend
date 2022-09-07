@@ -240,7 +240,7 @@ header {
     width: 70vw;
     margin: 80px 20px;
     background-color: transparent;
-    box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 40px 5px rgba(0, 0, 0, 0.3);
     border: 4pt solid rgba(255, 255, 255, 1);
 }
 
@@ -251,7 +251,7 @@ header {
     top: -30px;
     height: 20vh;
     width: 50vw;
-    box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.75);
     overflow: hidden;
 }
 
@@ -415,7 +415,7 @@ input textarea::placeholder {
 }
 
 /*edit*/
-/*about*/
+/*formulario*/
 .formulario {
     display: flex;
     flex-direction: column;
@@ -579,7 +579,7 @@ i {
     }
 
     .edit2 {
-        margin-right: 0px;
+        margin-right: 100px;
         margin-bottom: 10px;
     }
 
