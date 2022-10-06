@@ -7,8 +7,8 @@
         <div class="edit" *ngIf="isAuthenticated">
             <a [routerLink]="['/edit-project', proyec.id]"><i class="bi bi-pencil"></i></a>
             <a (click)="deletProyecto(proyec.id)"><i class="bi bi-x-circle"></i></a>
-        </div>
-        <!-- <div class="img-project"><img class="left" src="{{proyec.urlImagen}}" /></div> -->
+        </div><br>
+        <div class="img-project"><img class="left" [src]="proyec.proyectoImagen[0]?.url"/></div>
         <div class="right">
             <h1>{{proyec.nombreProyec}}</h1>
             <!--colocar el nombre del proyecto-->
@@ -18,7 +18,7 @@
         </div>
 
 
-        <div class="fab"><a class="info">MORE</a></div>
+        <div class="fab"><a class="info" [href]="proyec.urlPagina" target="_blank">MORE</a></div>
         <!--colocar el boton que lleva a la pagina de github-->
     </div>
 </div>

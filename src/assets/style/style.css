@@ -236,7 +236,7 @@ header {
 /*project*/
 .card {
     position: relative;
-    height: 450px;
+    height: auto;
     width: 70vw;
     margin: 80px 20px;
     background-color: transparent;
@@ -248,7 +248,7 @@ header {
     float: left;
     position: relative;
     left: 30px;
-    top: -30px;
+    top: -60px;
     height: 20vh;
     width: 50vw;
     box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.75);
@@ -288,6 +288,7 @@ img.left {
     color: rgba(255, 255, 255, 1);
     font-family: mifuente2;
     font-weight: 400;
+    margin-bottom: 55px;
 }
 
 .fab {
@@ -301,7 +302,7 @@ img.left {
     height: 80px;
     text-align: center;
     border-radius: 40%;
-    box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 5px 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 .info {
@@ -444,6 +445,7 @@ textarea {
     margin: 0px 10px 20px 0px;
     font-size: 20px;
     font-weight: 700;
+    padding-left: 6px;
 
 }
 
@@ -469,7 +471,8 @@ i {
     display: flex;
     justify-content: flex-end;
     margin-right: 35px;
-    margin-top: 40px;
+    margin-top: 13px;
+    margin-bottom: 48px; 
 
 }
 
@@ -560,7 +563,7 @@ i {
     }
 
     .right {
-        padding: 220px 10px 10px 0px;
+        padding: 205px 10px 10px 0px;
         margin-left: 20px;
         margin-right: 20px;
     }
@@ -710,14 +713,17 @@ i {
     }
 
     .img-project {
-        height: 220px;
-        width: 330px;
+        height: 190px;
+        width: 85%;
         left: 30px;
     }
 
     .form {
         width: 50vw;
     }
+    .right {
+        padding: 166px 10px 10px 0px;
+    }   
 
 
 }

@@ -8,16 +8,13 @@ export class LoginGuard implements CanActivate{
     constructor(private loginService: LoginService, private router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): boolean |  UrlTree  | Observable<boolean  | UrlTree> | Promise<boolean> {
-        this.loginService.login.pipe(take(1), map(login => {
+        return this.loginService.login.pipe(take(1), map(login => {
             const isLogin = !!login;
-            if(isLogin){
+            if (isLogin) {
                 return true;
             }
             return this.router.createUrlTree(['/login']);
         }));
-
-        return true ;
-
 
     }
 

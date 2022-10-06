@@ -27,12 +27,12 @@ export class ProyectoService {
   }
 
   /**metodo para guardar informacion al backend */
-  saveProyecto(proyecto: Proyecto): Observable<any> {
+  saveProyecto(proyecto: FormData): Observable<any> {
     return this.httpCliente.post<Proyecto>(this.url + 'saveproyecto', proyecto);
   }
 
   //metodo para actualizar
-  updateProyecto(id: number, proyecto: Proyecto): Observable<Proyecto> {
+  updateProyecto(id: number, proyecto: FormData): Observable<Proyecto> {
     return this.httpCliente.put<any>(this.url + `upproyecto/${id}`, proyecto);
   }
 }

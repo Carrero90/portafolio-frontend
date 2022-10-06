@@ -1,38 +1,60 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FileImagen } from '../models/file-imagen';
+import { Persona } from '../models/persona';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class UploadService {
-//   private pushUrl= 'http://localhost:8080/portafolio/savepersona';
-//   constructor() { }
 
-//   //metodo que permite hacer una peticion ajax clasica pero en la cual se va a juntar un archivo para subir
+@Injectable({
+    providedIn: 'root'
+})
+export class UploadService {
+    
 
-//   makeFileRequest(pushUrl: string, params: Array<string>, files:Array<File>, name: string){
-//     //se crea una promesa y tiene una funcion de callback
-//     return new Promise(function(resolve, reject){
-//       //definir la peticion ajax para subir un archivo se simula un formulario clasico
-//       var formData:any = new FormData();
-//       //se crea esta variable y va a contener un objeto XMLHttp asincrono
-//       var xhr = new XMLHttpRequest();
-//       //agrego un for para recorrer el array de archivos que me puede estar llegando y adjuntalo al formulario con el nombre que me llega de la propiedad y añade el archivo y recoge su nombre
-//       for (let i = 0; i < files.length; i++) {
-//         formData.append(name, files[i].name);
+    constructor(private sanitizer: DomSanitizer) { }
+
+    public createImagenes(persona: Persona) {
+                
+        const personaImagen: any[] = persona.personaImagen;
         
-//       }
-//       //escucha cuando hay un cambio
-//       xhr.onreadystatechange = function (){
-//         if(xhr.readyState == 4){
-//           if(xhr.status == 200){
-//             resolve(JSON.parse(xhr.response));
-//           }else {
-//             reject(xhr.response);
-//           }
-//         }
-//       }
-//       xhr.open('POST', pushUrl, true);
-//       xhr.send(formData);
-//     });
-//   }
-// }
+        const personaImagenesToFileImagen: FileImagen[] = [];
+
+        for (let i = 0; i < personaImagen?.length; i++) {
+            const imagenFileData = personaImagen[i];
+            
+            const imageBlob = this.dataURItoBlob(imagenFileData.picByte, imagenFileData.type);
+
+            const imageFile = new File([imageBlob], imagenFileData.name, { type: imagenFileData.type });
+
+            const finalFileImagen: FileImagen = {
+                id: imagenFileData.id,
+                file: imageFile,
+                url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile)),
+                
+            };
+
+            personaImagenesToFileImagen.push(finalFileImagen);
+        }
+        
+        persona.personaImagen = personaImagenesToFileImagen;
+        return persona;
+        
+        
+    }
+
+    public dataURItoBlob(picBytes: any, imageType: any) {
+        const byteString = window.atob(picBytes);
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const int8Array = new Uint8Array(arrayBuffer);
+
+        for (let i = 0; i < byteString.length; i++) {
+            int8Array[i] = byteString.charCodeAt(i);
+
+        }
+
+        const blob = new Blob([int8Array], { type: imageType });
+        return blob;
+    }
+
+  
+    
+}

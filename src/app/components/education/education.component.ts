@@ -70,8 +70,9 @@ export class EducationComponent implements OnInit, OnDestroy {
         //alert('El perfil se ha eliminado con éxito');
 
 
-        //para recargar la pagina de persona
-        window.location.reload();
+        //para recargar la pagina de educacion
+        //window.location.reload();
+        this.getEducation();
       },
 
       //manejo de errores

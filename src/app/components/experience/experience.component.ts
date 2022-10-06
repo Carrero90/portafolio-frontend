@@ -46,8 +46,9 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         //alert('El perfil se ha eliminado con éxito');
 
 
-        //para recargar la pagina de persona
-        window.location.reload();
+        //para recargar la pagina de experiencia
+        //window.location.reload();
+        this.getExperiencia();
       },
 
       //manejo de errores

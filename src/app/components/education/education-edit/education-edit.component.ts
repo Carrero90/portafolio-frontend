@@ -81,7 +81,7 @@ export class EducationEditComponent implements OnInit {
 
           alert("Se ha actualizado con éxito");
 
-          //para que vuelba a la pagina de inicio
+          //para que vuelba a la pagina de educacion
           this.router.navigateByUrl("/education");
         },
         error: err => {
@@ -120,9 +120,6 @@ export class EducationEditComponent implements OnInit {
       
     
   }
-
-
-
   //definir los metodos getter para el obtener el acceso de los controles del formulario que será utilizado en la plantilla y comprobar el estado del control del formulario
 
   get nombreUniversidad() { return this.educationFormGroup.get('education.nombreUniversidad'); }

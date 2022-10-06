@@ -31,8 +31,8 @@ export class PersonaService {
     }
 
     /**Metodo para guardar en el backend */
-    savePersona(persona: Persona): Observable<Persona> {
-        return this.httpCliente.post<any>(this.url + 'savepersona', persona);
+    savePersona(persona: FormData): Observable<any> {
+        return this.httpCliente.post<Persona>(this.url + 'savepersona', persona);
     }
 
     /**metodo para eliminar */
@@ -41,7 +41,7 @@ export class PersonaService {
     }
 
     /**metodo para actualizar */
-    updatePersona(id: number, persona: Persona): Observable<Persona> {
+    updatePersona(id: number, persona: FormData): Observable<Persona> {
         return this.httpCliente.put<any>(this.url + `uppersona/${id}`, persona);
 
     }

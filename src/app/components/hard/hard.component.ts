@@ -4,7 +4,6 @@ import { Hard } from 'src/app/models/hard';
 import { HardService } from 'src/app/services/hard.service';
 import { LoginService } from 'src/app/services/login.service';
 
-
 @Component({
   selector: 'app-hard',
   templateUrl: './hard.component.html',
@@ -49,8 +48,9 @@ export class HardComponent implements OnInit,  OnDestroy{
         //alert('El perfil se ha eliminado con éxito');
 
 
-        //para recargar la pagina de persona
-        window.location.reload();
+        //para recargar la pagina de habilidades
+        //window.location.reload();
+        this.obtenerHard();
       },
 
       //manejo de errores

@@ -48,15 +48,7 @@ export class LoginComponent implements OnInit {
         this.error = erroMens;
         
       });
-    // } else {
-    //   //llamado de la api
-    //   this.loginService.loginUp(email, password).subscribe(res => {
-    //     //console.log(res);
-
-    //   }, erroMens => {
-    //     //console.log(erroMens);
-    //     this.error = erroMens;
-    //   });
+   
 
       
     }

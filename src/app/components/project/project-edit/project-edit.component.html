@@ -1,10 +1,10 @@
 <div class="informacion">
 
-  <form [formGroup]="projectFormGroup" (ngSubmit)="onSubmit()" class="form">
-    <div formGroupName="project" class="formulario">
+  <form #proyectoForm="ngForm" (ngSubmit)="onSubmit(proyectoForm)" class="form">
+    <div  class="formulario">
       <!-- nombre del proyecto -->
       <label for="nombreProyec">Nombre del proyecto</label>
-      <input formControlName="nombreProyec" type="text" placeholder="nombre del proyecto" id="nombreProyec"
+      <input [(ngModel)]="proyecto.nombreProyec" #nombreProyec="ngModel" type="text" placeholder="nombre del proyecto" id="nombreProyec"
         name="nombreProyec">
       <div *ngIf="!nombreProyec?.valid && (nombreProyec?.dirty || nombreProyec?.touched)"
         class="alert alert-danger mt-1 mr-3">
@@ -18,7 +18,7 @@
 
       <!-- descripcion del proyecto -->
       <label for="descProyecto">Descripción del proyecto</label>
-      <textarea formControlName="descProyecto" type="text" placeholder="descripcion del proyecto" required
+      <textarea [(ngModel)]="proyecto.descProyecto" #descProyecto="ngModel" type="text" placeholder="descripcion del proyecto" required
         id="descProyecto" name="descProyecto"></textarea>
       <div *ngIf="!descProyecto?.valid && (descProyecto?.dirty || descProyecto?.touched)"
         class="alert alert-danger mt-1 mr-3">
@@ -33,7 +33,7 @@
 
       <!-- direccion de la pagina-->
       <label for="urlPagina">Direccion de la pagina</label>
-      <input formControlName="urlPagina" type="text" placeholder="direccion de la pagina" required id="urlPagina"
+      <input [(ngModel)]="proyecto.urlPagina" #urlPagina="ngModel" type="text" placeholder="direccion de la pagina" required id="urlPagina"
         name="urlPagina">
       <div *ngIf="!urlPagina?.valid && (urlPagina?.dirty || urlPagina?.touched)" class="alert alert-danger mt-1 mr-3">
         <div *ngIf="urlPagina?.errors?.['required'] || urlPagina?.errors?.['notEspacios']">
@@ -47,13 +47,24 @@
 
 
       <!-- imagen -->
-      <!-- <label for="urlFoto">Subir imagen</label>
-        <input formControlName="urlFoto" type="file" name="image" placeholder="Subir imagen" class="subir">
-        <div *ngIf="!urlFoto?.valid && (sobreMi?.dirty || sobreMi?.touched)" class="alert alert-danger mt-1 mr-3">
-          <div *ngIf="urlFoto?.errors?.['required']">
-            <p>La imagen es obligatorio</p>
-          </div>
-        </div> -->
+
+      <div *ngFor="let file of  proyecto.proyectoImagen; let i = index;"  style="text-align: center; margin-bottom: 10px;">
+        <div class="bi bi-x-circle" (click)="removeFile(i)"></div>
+        <img [src]="file.url" alt="imagen de proyecto" width="200px">
+      </div>
+      <label for="urlFoto"> Subir imagen </label>
+
+      <input type="file" value="select" #selectFile class="subir" (change)="onFileSelected($event)">
+
+      <div class="file-upload">
+
+
+
+        <i class="bi bi-upload" (click)="selectFile.click()"></i>
+        {{ fileName || "seleccionar imagen"}}
+
+      </div>
+
     </div>
 
     <!-- boton de enviar -->

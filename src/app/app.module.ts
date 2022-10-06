@@ -29,6 +29,9 @@ import { HardService } from './services/hard.service';
 import { ProyectoService } from './services/proyecto.service';
 import { LoginService } from './services/login.service';
 import { InterceptorService } from './services/interceptor.service';
+import { UploadService } from './services/upload.service';
+import { FileService } from './services/file.service';
+
 
 
 
@@ -67,7 +70,8 @@ import { InterceptorService } from './services/interceptor.service';
     FormsModule
     
   ],
-  providers: [PersonaService, EducationService, ExperienceService, HardService, ProyectoService, LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
+  providers: [PersonaService, EducationService, ExperienceService, HardService, ProyectoService, 
+    LoginService, UploadService, FileService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

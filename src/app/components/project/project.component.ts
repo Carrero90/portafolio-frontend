@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { Proyecto } from 'src/app/models/proyecto';
+import { FileService } from 'src/app/services/file.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 
@@ -14,7 +15,9 @@ export class ProjectComponent implements OnInit, OnDestroy{
   isAuthenticated : boolean;
   private userSub: Subscription;
 
-  constructor(private proyectoService: ProyectoService, private loginService: LoginService) {
+  constructor(private proyectoService: ProyectoService, 
+    private loginService: LoginService,
+    private fileService: FileService) {
     this.proyectos = [];
     this.isAuthenticated = false;
     this.userSub = new Subscription;
@@ -30,7 +33,11 @@ export class ProjectComponent implements OnInit, OnDestroy{
     });
   }
   getProyecto() {
-    this.proyectoService.getProyecto().subscribe(
+    this.proyectoService.getProyecto()
+    .pipe(
+      map((x: Proyecto[],i) => x.map((proyecto : Proyecto) => this.fileService.crearImagen(proyecto)))
+    )
+    .subscribe(
       data => {
         this.proyectos = data;
       }

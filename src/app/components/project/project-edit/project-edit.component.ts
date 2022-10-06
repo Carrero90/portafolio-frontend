@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map } from 'rxjs';
+import { FileImagen } from 'src/app/models/file-imagen';
 import { Proyecto } from 'src/app/models/proyecto';
+import { FileService } from 'src/app/services/file.service';
 import { ProyectoService } from 'src/app/services/proyecto.service';
-import { AboutEditValidators } from 'src/app/validators/about-edit-validators';
+
 
 @Component({
   selector: 'app-project-edit',
@@ -11,20 +15,22 @@ import { AboutEditValidators } from 'src/app/validators/about-edit-validators';
   styleUrls: ['./project-edit.component.css']
 })
 export class ProjectEditComponent implements OnInit {
-  projectFormGroup: FormGroup;
-  project: Proyecto[];
+
   id: number;
   editMode: boolean;
+  proyecto = new Proyecto(0, "", "", "", []);
+  fileName: any;
 
   constructor(private proyectoService: ProyectoService,
-    private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer,
+    private fileService: FileService) {
 
-    this.projectFormGroup = this.formBuilder.group({});
-    this.project = [];
+
     this.id = 0;
     this.editMode = false;
+    this.fileName = "";
 
   }
 
@@ -34,51 +40,41 @@ export class ProjectEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
-      this.initForm();
+
     });
-
-  }
-
-  private initForm() {
-    //para diferenciar si esta en modo de edicion o no
-    //si esta en modo de edicion es decir id != 0
     if (this.editMode) {
-      //obteneer por id
-      this.proyectoService.getIdProyecto(this.id).subscribe(response => {
-        this.nombreProyec?.setValue(response.nombreProyec)
-        this.descProyecto?.setValue(response.descProyecto)
-        this.urlPagina?.setValue(response.urlPagina)
-      });
-
+      this.getProyectoId();
     }
-    //de lo contrario, es decir si es nuevo id= 0
-    //formulario y su respectiva validación
-    this.projectFormGroup = this.formBuilder.group({
-      project: this.formBuilder.group({
-        nombreProyec: new FormControl('', [Validators.required, Validators.minLength(3), AboutEditValidators.notEspacios]),
-        descProyecto: new FormControl('', [Validators.required, Validators.minLength(10), AboutEditValidators.notEspacios]),
-        urlPagina: new FormControl('', [Validators.required, Validators.minLength(10), AboutEditValidators.notEspacios]),
-        //urlImagen: new FormControl('', [Validators.required])
-      })
-    });
+
+
   }
+
+  //obtener persona por id
+  getProyectoId() {
+    this.proyectoService.getIdProyecto(this.id)
+      .pipe(
+        map(p => this.fileService.crearImagen(p))
+      )
+      .subscribe(
+        (respon) => {
+          this.proyecto = respon;
+        });
+  }
+
+
 
   //evento para enviar el formulario al back-end
-  onSubmit() {
-    //guardar nueva persona
-    let project = new Proyecto(0, "", "", "", "");
-
-    //para que guarde los valores que se intriduce en el formulario
-    project = this.projectFormGroup.controls['project'].value;
+  onSubmit(proyectoForm: NgForm) {
+    const proyectoFormData = this.preparFormData(this.proyecto);
 
     if (this.editMode) {
-      this.proyectoService.updateProyecto(this.id, project).subscribe({
+      this.proyectoService.updateProyecto(this.id, proyectoFormData).subscribe({
 
         next: response => {
 
           alert("Se ha actualizado con éxito");
 
-          //para que vuelba a la pagina de inicio
+          //para que vuelva a la pagina de inicio
           this.router.navigateByUrl("/project");
         },
         error: err => {
@@ -87,22 +83,18 @@ export class ProjectEditComponent implements OnInit {
 
       });
     } else {
-      //valida de que todos los campos sean obligatorios
-      if (this.projectFormGroup.invalid) {
-        this.projectFormGroup.markAllAsTouched();
-        return;
-      }
+
 
       //llamando a la api rest
-      this.proyectoService.saveProyecto(project).subscribe(
+      this.proyectoService.saveProyecto(proyectoFormData).subscribe(
         {
           //para obtener los resultados de la api
           next: response => {
             alert('El perfil se ha guardado con éxito');
 
-
             //para resetear el  formulario
-            this.projectFormGroup.reset();
+            proyectoForm.reset();
+
             //para que vuelva a la pagina de inicio
             this.router.navigateByUrl("/project");
           },
@@ -119,12 +111,48 @@ export class ProjectEditComponent implements OnInit {
 
   }
 
-  //definir los metodos getter para el obtener el acceso de los controles del formulario que será utilizado en la plantilla y comprobar el estado del control del formulario
+  //para guardar el archivo
 
-  get nombreProyec() { return this.projectFormGroup.get('project.nombreProyec'); }
-  get descProyecto() { return this.projectFormGroup.get('project.descProyecto'); }
-  get urlPagina() { return this.projectFormGroup.get('project.urlPagina'); }
-  get urlImagen() { return this.projectFormGroup.get('project.urlImagen'); }
+  preparFormData(proyecto: Proyecto): FormData {
+    const formData = new FormData();
 
+    formData.append(
+      'theProyec',
+      new Blob([JSON.stringify(proyecto)], { type: 'application/json' })
+    );
+
+    for (let i = 0; i < proyecto.proyectoImagen.length; i++) {
+      formData.append(
+        'imageFile',
+        proyecto.proyectoImagen[i].file,
+        proyecto.proyectoImagen[i].file.name
+      )
+    }
+    return formData;
+  }
+
+
+
+  //para seleccionar el archivo
+
+  onFileSelected(event: any) {
+    if (event.target.files) {
+      const file = event.target.files[0];
+      this.fileName = file.name;
+      const fileImagen: FileImagen = {
+        id: file.id,
+        file: file,
+        url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
+      }
+      this.proyecto.proyectoImagen.push(fileImagen);
+    }
+
+
+  }
+
+  //para remover la imagen de la vista
+  removeFile(i: number) {
+    this.proyecto.proyectoImagen.splice(i, 1);
+  }
 
 }

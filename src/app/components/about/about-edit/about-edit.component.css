@@ -1,3 +1,20 @@
+.bi-x-circle {
+    color: white;
+    font-size: 20px;
+    margin-right: -173px;
+    cursor: pointer;
+}
 
+.subir {
+    display: none;
+}
+
+.file-upload {
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    
+}
 
 

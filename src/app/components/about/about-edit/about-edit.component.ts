@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map } from 'rxjs';
+import { FileImagen } from 'src/app/models/file-imagen';
 import { Persona } from 'src/app/models/persona';
 import { PersonaService } from 'src/app/services/persona.service';
-import { AboutEditValidators } from 'src/app/validators/about-edit-validators';
+import { UploadService } from 'src/app/services/upload.service';
+
 
 
 
@@ -14,22 +18,27 @@ import { AboutEditValidators } from 'src/app/validators/about-edit-validators';
 
 })
 export class AboutEditComponent implements OnInit {
-  aboutFormGroup: FormGroup;
-  about: Persona[];
+
   id: number;
   editMode: boolean;
-  
+  persona = new Persona(0, "", "", "", "", []);
+  fileName: any;
 
 
 
-  constructor(private formBuilder: FormBuilder,
+
+
+  constructor(private sanitizer: DomSanitizer,
     private personaService: PersonaService,
     private router: Router,
-    private route: ActivatedRoute) {
-    this.aboutFormGroup = this.formBuilder.group({});
-    this.about = [];
+    private route: ActivatedRoute,
+    private uploade: UploadService) {
+
     this.id = 0;
     this.editMode = false;
+    this.fileName = '';
+
+
 
 
   }
@@ -41,75 +50,52 @@ export class AboutEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
-      this.initForm();
+
     });
-
-
-
+    if (this.editMode) {
+      this.getPersonaId();
+    }
   }
 
-  private initForm() {
-    //para diferenciar si esta en modo de edicion o no
-    //si esta en modo de edicion es decir id != 0
-    if (this.editMode) {
-      //obteneer por id
-      this.personaService.getIdPersona(this.id).subscribe(response => {
-        this.nombre?.setValue(response.nombre)
-        this.apellido?.setValue(response.apellido)
-        this.ocupacion?.setValue(response.ocupacion)
-        this.sobreMi?.setValue(response.sobreMi)
-      });
-
-    }
-    //de lo contrario, es decir si es nuevo id= 0
-    //formulario y su respectiva validación
-    this.aboutFormGroup = this.formBuilder.group({
-      about: this.formBuilder.group({
-        nombre: new FormControl('', [Validators.required, Validators.minLength(3), AboutEditValidators.notEspacios]),
-        apellido: new FormControl('', [Validators.required, Validators.minLength(2), AboutEditValidators.notEspacios]),
-        ocupacion: new FormControl('', [Validators.required, Validators.minLength(2), AboutEditValidators.notEspacios]),
-        sobreMi: new FormControl('', [Validators.required, Validators.minLength(5), AboutEditValidators.notEspacios]),
-        urlFoto: new FormControl('', [Validators.required])
-      })
-
-    });
+  //obtener persona por id
+  getPersonaId() {
+    this.personaService.getIdPersona(this.id)
+      .pipe(
+        map(p => this.uploade.createImagenes(p))
+      )
+      .subscribe(
+        (respon) => {
+          this.persona = respon;
+        });
   }
 
 
   //evento para enviar el formulario al back-end
-  onSubmit() {
-     //guardar nueva persona
-     let persona = new Persona(0, "", "", "", "","");
+  onSubmit(personaForm: NgForm) {
 
-     //para que guarde los valores que se intriduce en el formulario
-     persona = this.aboutFormGroup.controls['about'].value;
-
+    const personaFormData = this.prepareFormData(this.persona);
     if (this.editMode) {
-      this.personaService.updatePersona(this.id, persona).subscribe({
+      this.personaService.updatePersona(this.id, personaFormData)
+        .subscribe({
 
-        next: response => {
+          next: response => {
+            
+            alert("Se ha actualizado con éxito")
 
-          alert("Se ha actualizado con éxito")
-
-          //para que vuelba a la pagina de inicio
-          this.router.navigateByUrl("/personas");
-        },
-        error: err => {
-          alert('Error al guardar');
-        }
+            //para que vuelba a la pagina de inicio
+            this.router.navigateByUrl("/personas");
+          },
+          error: err => {
+            alert('Error al guardar');
+          }
 
 
-      });
+        });
     } else {
-      //valida de que todos los campos sean obligatorios
-      if (this.aboutFormGroup.invalid) {
-        this.aboutFormGroup.markAllAsTouched();
-        return;
-      }
-     
 
-      //llamando a la api rest
-      this.personaService.savePersona(persona).subscribe(
+
+      //llamando a la api rest para guardar
+      this.personaService.savePersona(personaFormData).subscribe(
         {
 
           //para obtener los resultados de la api
@@ -118,7 +104,8 @@ export class AboutEditComponent implements OnInit {
 
 
             //para resetear el  formulario
-            this.aboutFormGroup.reset();
+            personaForm.reset();
+            this.persona.personaImagen = [];
 
             //para que vuelba a la pagina de inicio
             this.router.navigateByUrl("/personas");
@@ -130,22 +117,55 @@ export class AboutEditComponent implements OnInit {
           }
 
         });
+
     }
-   
 
   }
 
+  //para capturar la imagen
+
+  onselectFile(event: any) {
+    if (event.target.files) {
+
+      const file = event.target.files[0];
+      this.fileName = file.name;
+      const fileImagen: FileImagen = {
+        id: file.id,
+        file: file,
+        url: this.sanitizer.bypassSecurityTrustUrl(
+          window.URL.createObjectURL(file)
+        )
+      }
+
+      this.persona.personaImagen.push(fileImagen);
+    }
+  }
+
+  //para agregar la imagen a la base de datos
+  prepareFormData(persona: Persona): FormData {
+    const formData: FormData = new FormData();
+
+    formData.append(
+      'thePersona',
+      new Blob([JSON.stringify(persona)], { type: 'application/json' })
+    );
+    for (var i = 0; i < persona.personaImagen.length; i++) {
+      formData.append(
+        'imagenFile',
+        persona.personaImagen[i].file,
+        persona.personaImagen[i].file.name
+      )
+    }
+    return formData;
+
+  }
+
+  //para remover la imagenes que se muestran
+  removeImagen(i: number) {
+    this.persona.personaImagen.splice(i, 1);
+  }
 
 
-
-
-  //definir los metodos getter para el obtener el acceso de los controles del formulario que será utilizado en la plantilla y comprobar el estado del control del formulario
-
-  get nombre() { return this.aboutFormGroup.get('about.nombre'); }
-  get apellido() { return this.aboutFormGroup.get('about.apellido'); }
-  get ocupacion() { return this.aboutFormGroup.get('about.ocupacion'); }
-  get sobreMi() { return this.aboutFormGroup.get('about.sobreMi'); }
-  get urlFoto() { return this.aboutFormGroup.get('about.urlFoto'); }
 
 
 }

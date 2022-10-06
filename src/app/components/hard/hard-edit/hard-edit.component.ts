@@ -65,7 +65,7 @@ export class HardEditComponent implements OnInit {
 
   //evento para enviar la informacion al back-end
   onSubmit() {
-    //guardar nueva educacion
+    //guardar nueva habilidad
     let hard = new Hard(0, "", 0);
 
     //para que guarde los valores que se intriduce en el formulario
@@ -78,7 +78,7 @@ export class HardEditComponent implements OnInit {
 
           alert("Se ha actualizado con éxito");
 
-          //para que vuelba a la pagina de inicio
+          //para que vuelba a la pagina de habilidades
           this.router.navigateByUrl("/hard");
         },
         error: err => {
@@ -103,7 +103,7 @@ export class HardEditComponent implements OnInit {
           //para resetear el formulario
           this.hardFormGroup.reset();
 
-          //para que vuelva a la pagina de educacion
+          //para que vuelva a la pagina de habilidades
           this.router.navigateByUrl("/hard");
         },
 
@@ -116,9 +116,6 @@ export class HardEditComponent implements OnInit {
 
 
   }
-
-
-
 
   //definir los metodos getter para el obtener el acceso de los controles del formulario que será utilizado en la plantilla y comprobar el estado del control del formulario
 

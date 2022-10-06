@@ -81,7 +81,7 @@ export class ExperienceEditComponent implements OnInit {
 
           alert("Se ha actualizado con éxito");
 
-          //para que vuelba a la pagina de inicio
+          //para que vuelba a la pagina de experiencia
           this.router.navigateByUrl("/experience");
         },
         error: err => {
