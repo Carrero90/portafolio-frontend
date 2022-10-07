@@ -16,6 +16,8 @@ export class ExperienceEditComponent implements OnInit {
   experience: Experience[];
   id: number;
   editMode: boolean;
+  fecha: string;
+ 
 
   constructor(private experienciaService: ExperienceService,
     private formBuilder: FormBuilder,
@@ -26,6 +28,7 @@ export class ExperienceEditComponent implements OnInit {
     this.experience = [];
     this.id = 0;
     this.editMode = false;
+    this.fecha = "Actual";
   }
 
   ngOnInit(): void {
@@ -129,6 +132,7 @@ export class ExperienceEditComponent implements OnInit {
   get fechaFin() { return this.experienceFormGroup.get('experience.fechaFin'); }
   get descLaboral() { return this.experienceFormGroup.get('experience.descLaboral'); }
 
+ 
 
 
 }

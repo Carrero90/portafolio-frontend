@@ -35,7 +35,7 @@ body.rose {
 }
 
 body.verd {
-    background-color: rgba(167, 224, 198, 1);
+    background-color:rgb(57, 91, 100);
     transition: 4s;
 }
 
@@ -393,7 +393,9 @@ input textarea::placeholder {
 }
 
 .skill {
-    margin-bottom: 40px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .hard h2 {
@@ -403,17 +405,6 @@ input textarea::placeholder {
     font-weight: 700;
 }
 
-.progress {
-    border-radius: 10px;
-    box-shadow: 0 1px 0px #bebbb9 inset, 0 1px 0 #fcfcfc;
-    background: #e9e5e2;
-}
-
-.progress-bar {
-    border-radius: 10px;
-    box-shadow: 0 1px 0px #fcfcfc inset, 0 1px 0 #bebbb9;
-    background-color: rgba(238, 123, 172, 1);
-}
 
 /*edit*/
 /*formulario*/
@@ -486,6 +477,45 @@ i {
     margin-left: 20px;
 
 
+}
+
+/*carteles de informacion*/
+
+.tooltips {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltips .tooltiptext {
+    visibility: hidden;
+    width: 70px;
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+   
+    /* Posicion de los carteles */
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -35px;
+}
+
+.tooltips .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+
+.tooltips:hover .tooltiptext {
+    visibility: visible;
 }
 
 
@@ -723,7 +753,17 @@ i {
     }
     .right {
         padding: 166px 10px 10px 0px;
-    }   
+    }  
+    
+     /*hard y skills*/
+     .hard {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        margin-top: 100px;
+        width: 90%;
+
+    }
 
 
 }

@@ -2,7 +2,7 @@
 
     <form [formGroup]="experienceFormGroup" (ngSubmit)="onSubmit()" class="form">
         <div formGroupName="experience" class="formulario">
-            
+
             <!-- nombre de la empresa -->
             <label for="nombreEmpresa">Nombre de la empresa</label>
             <input formControlName="nombreEmpresa" type="text" placeholder="nombre de la Empresa" id="nombreEmpresa"
@@ -19,8 +19,9 @@
 
             <!-- fecha de inicio -->
             <label for="fechaInicio">Fecha de Inicio</label>
-            <input formControlName="fechaInicio" type="text" placeholder="fecha de inicio" required id="fechaInicio"
-                name="fechaInicio">
+            
+            <input formControlName="fechaInicio" type="date" placeholder="fecha de inicio" required id="fechaInicio"
+                name="fechaInicio" >
             <div *ngIf="!fechaInicio?.valid && (fechaInicio?.dirty || fechaInicio?.touched)"
                 class="alert alert-danger mt-1 mr-3">
                 <div *ngIf="fechaInicio?.errors?.['required'] || fechaInicio?.errors?.['notEspacios']">
@@ -32,9 +33,11 @@
             </div>
 
 
+
             <!-- fecha Fin-->
             <label for="fechaFin">Fecha fin</label>
-            <input formControlName="fechaFin" type="text" placeholder="Fecha fin" required id="fechaFin"
+            <input type="checkbox" value="Actual" onclick = "fechaFin.style.visibility = (this.checked) ? 'hidden' : 'visible'" required/> Actual
+            <input formControlName="fechaFin" type="date" placeholder="Fecha fin" required id="fechaFin"
                 name="fechaFin">
             <div *ngIf="!fechaFin?.valid && (fechaFin?.dirty || fechaFin?.touched)"
                 class="alert alert-danger mt-1 mr-3">

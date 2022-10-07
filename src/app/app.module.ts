@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgCircleProgressModule } from "ng-circle-progress";
 
-
+    
+   
 
 
 import { AppComponent } from './app.component';
@@ -36,9 +38,6 @@ import { FileService } from './services/file.service';
 
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,10 +54,7 @@ import { FileService } from './services/file.service';
     ExperienceEditComponent,
     HardEditComponent,
     ProjectEditComponent
-    
-
-   
-    
+     
    
   ],
   imports: [
@@ -67,7 +63,21 @@ import { FileService } from './services/file.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule, 
-    FormsModule
+    FormsModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+           
+    }),
+  
+   
+  
+
     
   ],
   providers: [PersonaService, EducationService, ExperienceService, HardService, ProyectoService, 

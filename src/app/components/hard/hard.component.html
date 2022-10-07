@@ -1,18 +1,39 @@
-<div class="crear" *ngIf="isAuthenticated">
-  <a [routerLink]="['/crear-hard']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+<div class="crear" *ngIf="isAuthenticated" mat-raised-button matTooltip="Info about the action">
+
+  <a [routerLink]="['/crear-hard']" class="tooltips"><i class="bi bi-plus-circle" width="50" height="50"></i>
+    <span class="tooltiptext">Agregar</span>
+  </a>
 </div>
 <div class="hard">
-<div class="skill" *ngFor="let hard of hard" >
-  
-  <div class="edit" *ngIf="isAuthenticated">
-    <a [routerLink]="['/edit-hard', hard.id]"><i class="bi bi-pencil"></i></a>
-    <a (click)="deletHard(hard.id)"><i class="bi bi-x-circle"></i></a>
-    
+  <div class="skill" *ngFor="let hard of hard">
+
+    <div class="edit" *ngIf="isAuthenticated">
+      <a [routerLink]="['/edit-hard', hard.id]" class="tooltips"><i class="bi bi-pencil"></i>
+        <span class="tooltiptext">Editar</span></a>
+      <a (click)="deletHard(hard.id)" class="tooltips"><i class="bi bi-x-circle"></i>
+        <span class="tooltiptext">Eliminar</span></a>
+    </div>
+
+    <circle-progress 
+      [percent]="hard.porcentaje" 
+      [radius]="100" 
+      [outerStrokeWidth]="16" 
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#00838F'" 
+      [innerStrokeColor]="'#C4DFAA'" 
+      [showSubtitle]="true" [animation]="true"
+      [animationDuration]="3000" 
+      [responsive]="true" 
+      subtitle="{{hard.nombreHabi}}" 
+      titleFontSize="20"
+      unitsFontSize="20" 
+      subtitleFontSize="22" 
+      titleFontWeight="900" 
+      unitsFontWeight="900" 
+      subtitleFontWeight="900"
+      titleColor=#C4DFAA 
+      unitsColor=#C4DFAA 
+      subtitleColor=#fff>
+    </circle-progress>
   </div>
-  <h2>{{hard.nombreHabi}}</h2>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" [style.width.%]= "hard.porcentaje" aria-valuenow="25" aria-valuemin="0"
-      aria-valuemax="100">{{hard.porcentaje}}%</div>
-  </div>
-</div>
 </div>

@@ -13,6 +13,7 @@ export class HardComponent implements OnInit,  OnDestroy{
   hard: Hard[];
   isAuthenticated : boolean;
   private userSub: Subscription;
+  
 
   constructor(private hardService: HardService, private loginService: LoginService) {
              

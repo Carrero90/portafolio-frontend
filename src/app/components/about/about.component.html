@@ -1,10 +1,16 @@
 <div class="crear" *ngIf="isAuthenticated">
-    <a  [routerLink]="['/crear-about']" ><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+    <a  [routerLink]="['/crear-about']" class="tooltips"><i class="bi bi-plus-circle" width="50" height="50"></i>
+        <span class="tooltiptext">Agregar</span>
+    </a>
 </div>
 <div *ngFor="let pers of personas">
     <div class="edit" *ngIf="isAuthenticated">
-        <a  [routerLink]="['/edit-about', pers.id]"><i class="bi bi-pencil"></i></a>
-        <a  (click)="deletPersona(pers.id)"><i class="bi bi-x-circle"></i></a>
+        <a  [routerLink]="['/edit-about', pers.id]" class="tooltips"><i class="bi bi-pencil"></i>
+            <span class="tooltiptext">Editar</span>
+        </a>
+        <a  (click)="deletPersona(pers.id)" class="tooltips"><i class="bi bi-x-circle"></i>
+            <span class="tooltiptext">Eliminar</span>
+        </a>
     </div>
 
     <div class="sobre_mi">

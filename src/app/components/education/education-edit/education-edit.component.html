@@ -18,7 +18,7 @@
 
             <!-- Año de Ingreso -->
             <label for="yearIngreso">Año de Ingreso</label>
-            <input formControlName="yearIngreso" type="text" placeholder="Año de ingreso" required id="yearIngreso"
+            <input formControlName="yearIngreso" type="date" placeholder="Año de ingreso" required id="yearIngreso"
                 name="yearIngreso">
             <div *ngIf="!yearIngreso?.valid && (yearIngreso?.dirty || yearIngreso?.touched)"
                 class="alert alert-danger mt-1 mr-3">
@@ -33,7 +33,7 @@
 
             <!-- Año de Egreso -->
             <label for="yearEgreso">Año de Egreso</label>
-            <input formControlName="yearEgreso" type="text" placeholder="Año de egreso" required id="yearEgreso"
+            <input formControlName="yearEgreso" type="date" placeholder="Año de egreso" required id="yearEgreso"
                 name="yearEgreso">
             <div *ngIf="!yearEgreso?.valid && (yearEgreso?.dirty || yearEgreso?.touched)"
                 class="alert alert-danger mt-1 mr-3">

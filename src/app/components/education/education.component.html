@@ -1,20 +1,26 @@
-<div class="crear" >
-  <a  *ngIf="isAuthenticated" [routerLink]="['/crear-education']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+<div class="crear">
+  <a *ngIf="isAuthenticated" [routerLink]="['/crear-education']" class="tooltips"><i class="bi bi-plus-circle"
+      width="50" height="50"></i>
+    <span class="tooltiptext">Agregar</span>
+  </a>
 </div>
 <div class="container">
   <div *ngFor="let educa of education">
-    <div class="edit"  *ngIf="isAuthenticated">
-      <a [routerLink]="['/edit-education', educa.id]"><i class="bi bi-pencil"></i></a>
-      <a (click)="deletEducation(educa.id)"><i class="bi bi-x-circle"></i></a>
+    <div class="edit" *ngIf="isAuthenticated">
+      <a [routerLink]="['/edit-education', educa.id]" class="tooltips"><i class="bi bi-pencil"></i>
+        <span class="tooltiptext">Editar</span>
+      </a>
+      <a (click)="deletEducation(educa.id)" class="tooltips"><i class="bi bi-x-circle"></i>
+        <span class="tooltiptext">Eliminar</span>
+      </a>
     </div>
     <button class="accordion" type="button" (click)="toggleOpen()">{{educa.nombreUniversidad}}</button>
     <div class="panel" [@panel]="isOpen ? 'open' : 'closed'">
       <div class="fecha">
-        <p>Año de ingreso:{{educa.yearIngreso}} </p>
-        <p>Año de egreso:{{educa.yearEgreso}}</p>
+        <p>Año de ingreso:{{educa.yearIngreso | date: 'dd-MM-yyyy'}} </p>
+        <p>Año de egreso:{{educa.yearEgreso | date: 'dd-MM-yyyy'}}</p>
       </div>
-
-      <p>Carrera: {{educa.carrera}}</p>
+      <p>Carrera: {{educa.carrera}}</p> <br>
       <p>{{educa.descripcion}}</p>
     </div>
   </div>
