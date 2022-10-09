@@ -35,10 +35,12 @@
 
 
             <!-- fecha Fin-->
-            <label for="fechaFin">Fecha fin</label>
-            <input type="checkbox" value="Actual" onclick = "fechaFin.style.visibility = (this.checked) ? 'hidden' : 'visible'" required/> Actual
-            <input formControlName="fechaFin" type="date" placeholder="Fecha fin" required id="fechaFin"
-                name="fechaFin">
+            <label for="fechaFin check">Fecha fin</label>
+            <div id="checkbox"><input  type="checkbox" onclick ="fechaFin.style.display = (this.checked) ? 'none' : 'block', fechaFin2.style.display = (this.checked) ? 'block' : 'none'" ><span>Actualmente</span></div> 
+            <input formControlName="fechaFin" type="date" placeholder="Fecha fin" required id="fechaFin" name="fechaFin" >
+            <input formControlName="fechaFin" type="text" placeholder="Fecha fin" required id="fechaFin2" name="fechaFin2" [(ngModel)]="actual">
+
+           
             <div *ngIf="!fechaFin?.valid && (fechaFin?.dirty || fechaFin?.touched)"
                 class="alert alert-danger mt-1 mr-3">
                 <div *ngIf="fechaFin?.errors?.['required'] || fechaFin?.errors?.['notEspacios']">

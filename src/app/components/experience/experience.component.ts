@@ -13,6 +13,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   experiences : Experience[];
   isAuthenticated : boolean;
   private userSub: Subscription;
+  
 
   constructor( private experienceService: ExperienceService,  private loginService: LoginService) { 
     this.experiences =[];

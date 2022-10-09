@@ -15,6 +15,7 @@ export class EducationEditComponent implements OnInit {
   education: Education[];
   id: number;
   editMode: boolean;
+  actual:string;
 
   constructor(private formBuilder: FormBuilder,
     private educationSevice: EducationService,
@@ -24,6 +25,7 @@ export class EducationEditComponent implements OnInit {
     this.education = [];
     this.id = 0;
     this.editMode = false;
+    this.actual ="Actualmente";
   }
 
   ngOnInit(): void {

@@ -1,12 +1,18 @@
 <div class="crear" *ngIf="isAuthenticated">
-    <a [routerLink]="['/crear-project']"><i class="bi bi-plus-circle" width="50" height="50"></i></a>
+    <a [routerLink]="['/crear-project']"  class="tooltips"><i class="bi bi-plus-circle" width="50" height="50"></i>
+        <span class="tooltiptext">Agregar</span>
+    </a>
 </div>
 <div class="project">
    
     <div class="card" *ngFor="let proyec of proyectos">
         <div class="edit" *ngIf="isAuthenticated">
-            <a [routerLink]="['/edit-project', proyec.id]"><i class="bi bi-pencil"></i></a>
-            <a (click)="deletProyecto(proyec.id)"><i class="bi bi-x-circle"></i></a>
+            <a [routerLink]="['/edit-project', proyec.id]"  class="tooltips"><i class="bi bi-pencil"></i>
+                <span class="tooltiptext">Editar</span>
+            </a>
+            <a (click)="deletProyecto(proyec.id)"  class="tooltips"><i class="bi bi-x-circle"></i>
+                <span class="tooltiptext">Eliminar</span>
+            </a>
         </div><br>
         <div class="img-project"><img class="left" [src]="proyec.proyectoImagen[0]?.url"/></div>
         <div class="right">

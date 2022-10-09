@@ -33,8 +33,9 @@
 
             <!-- Año de Egreso -->
             <label for="yearEgreso">Año de Egreso</label>
-            <input formControlName="yearEgreso" type="date" placeholder="Año de egreso" required id="yearEgreso"
-                name="yearEgreso">
+            <div id="checkbox"><input  type="checkbox" onclick ="yearEgreso.style.display = (this.checked) ? 'none' : 'block', yearEgreso2.style.display = (this.checked) ? 'block' : 'none'" ><span>Actualmente</span></div> 
+            <input formControlName="yearEgreso" type="date" placeholder="Año de egreso" required id="yearEgreso" name="yearEgreso">
+            <input formControlName="yearEgreso" type="text" placeholder="Año de egreso" required id="yearEgreso2" name="yearEgreso2" [(ngModel)]="actual">
             <div *ngIf="!yearEgreso?.valid && (yearEgreso?.dirty || yearEgreso?.touched)"
                 class="alert alert-danger mt-1 mr-3">
                 <div *ngIf="yearEgreso?.errors?.['required'] || yearEgreso?.errors?.['notEspacios']">

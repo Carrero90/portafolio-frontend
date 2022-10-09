@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { CheckboxControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/services/experience.service';
@@ -16,7 +16,10 @@ export class ExperienceEditComponent implements OnInit {
   experience: Experience[];
   id: number;
   editMode: boolean;
-  fecha: string;
+  actual:string;
+
+ 
+ 
  
 
   constructor(private experienciaService: ExperienceService,
@@ -28,7 +31,8 @@ export class ExperienceEditComponent implements OnInit {
     this.experience = [];
     this.id = 0;
     this.editMode = false;
-    this.fecha = "Actual";
+    this.actual ="Actualmente";
+
   }
 
   ngOnInit(): void {
@@ -62,9 +66,9 @@ export class ExperienceEditComponent implements OnInit {
       experience: this.formBuilder.group({
         nombreEmpresa: new FormControl('', [Validators.required, Validators.minLength(2), AboutEditValidators.notEspacios]),
         fechaInicio: new FormControl('', [Validators.required, Validators.minLength(8), AboutEditValidators.notEspacios]),
-        fechaFin: new FormControl('', [Validators.required, Validators.minLength(8), AboutEditValidators.notEspacios]),
+        fechaFin: new FormControl('', [Validators.required, Validators.minLength(4)]),
         descLaboral: new FormControl('', [Validators.required, Validators.minLength(8), AboutEditValidators.notEspacios]),
-
+        
       })
     });
   }
@@ -132,7 +136,6 @@ export class ExperienceEditComponent implements OnInit {
   get fechaFin() { return this.experienceFormGroup.get('experience.fechaFin'); }
   get descLaboral() { return this.experienceFormGroup.get('experience.descLaboral'); }
 
- 
 
 
 }
