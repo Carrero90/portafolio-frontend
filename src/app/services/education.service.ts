@@ -7,7 +7,7 @@ import { Education } from '../models/education';
   providedIn: 'root'
 })
 export class EducationService {
-  private url = 'http://localhost:8080/portafolio/';
+  private url = ' https://back-portafolios.herokuapp.com/portafolio/';
   
   
 

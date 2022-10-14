@@ -7,7 +7,7 @@ import { Experience } from '../models/experience';
   providedIn: 'root'
 })
 export class ExperienceService {
-  private url = 'http://localhost:8080/portafolio/';
+  private url = ' https://back-portafolios.herokuapp.com/portafolio/';
   
 
 

@@ -45,7 +45,7 @@
       <!-- sobre mi -->
       <label for="sobreMi">Sobre Mi</label>
       <textarea [(ngModel)]="persona.sobreMi" #sobreMi="ngModel" placeholder="descripción" required id="sobreMi"
-        name="sobreMi"></textarea>
+        name="sobreMi" maxlength="400"></textarea>
       <div *ngIf="!sobreMi?.valid && (sobreMi?.dirty || sobreMi?.touched)" class="alert alert-danger mt-1 mr-3">
         <div *ngIf="sobreMi?.errors?.['required'] || sobreMi?.errors?.['notEspacios']">
           <p>Sobre mi es obligatorio</p>
