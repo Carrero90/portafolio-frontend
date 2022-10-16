@@ -3,6 +3,9 @@
         <span class="tooltiptext">Agregar</span>
     </a>
 </div>
+<div *ngIf="experiences">
+    <p class="contenido borde" >No poseo experiencia en el área TI, pero mi deseo es poder adaptar mis conocimientos en el desarrollo de Full Stack y aprovechar la oportunidad de trabajar en un gran equipo, para crecer como profesional y dar lo mejor de mis cualidades.</p>
+</div>
 <div class="experience">
     <div *ngFor="let exper of experiences">
         <div class="edit2" *ngIf="isAuthenticated">

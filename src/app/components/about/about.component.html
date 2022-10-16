@@ -3,7 +3,13 @@
         <span class="tooltiptext">Agregar</span>
     </a>
 </div>
+
+<div *ngIf="!personas.length">
+    <span class="load"></span>          
+</div>
+
 <div *ngFor="let pers of personas">
+    
     <div class="edit" *ngIf="isAuthenticated">
         <a  [routerLink]="['/edit-about', pers.id]" class="tooltips"><i class="bi bi-pencil"></i>
             <span class="tooltiptext">Editar</span>
@@ -25,4 +31,5 @@
         <img class="foto" [src]="pers.personaImagen[0]?.url" alt="foto de perfil">
 
     </div>
+    
 </div>

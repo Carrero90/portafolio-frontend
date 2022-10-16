@@ -3,6 +3,10 @@
         <span class="tooltiptext">Agregar</span>
     </a>
 </div>
+
+<div *ngIf="!proyectos.length">
+    <span class="load"></span>          
+</div>
 <div class="project">
    
     <div class="card" *ngFor="let proyec of proyectos">
