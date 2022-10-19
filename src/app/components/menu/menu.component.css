@@ -2,6 +2,8 @@
     text-align: center;
     height: 100%;
     margin-top: 50px;
+    position: fixed;
+   
 }
 
 a {
@@ -26,7 +28,6 @@ ul {
     padding: 0;
     width: 10%;
     height: 100%;
-    /*position: fixed;*/
     margin-top: 0px;
     
 }
